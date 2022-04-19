@@ -1,0 +1,47 @@
+@startuml~1
+hide circle
+skinparam  class {
+    BackgroundColor<<personnel>> #A9DCDF
+}
+
+entity "Rol"{
+  *id_rol : int <<PK>>
+  nombre: varchar 120
+}
+
+entity "Usuario"{
+  *correo : varchar 150 <<PK>>
+  password_hash: varchar 100
+  activo : boolean
+  fecha_alta: date
+  id_rol: int <<FK>>
+}
+
+entity "Albergue" {
+  *id_albergue : int <<PK>>
+  nombre: varchar 100
+  direccion: varchar 500
+  contacto: varchar 100
+  telefono: varchar 13
+  correo: varchar <<FK>>
+}
+
+entity "Mascota"{
+  *id_mascota : int <<PK>>
+  tipo_mascota_ varchar 20
+  nombre: varchar 100
+  sexo: varchar 20
+  fecha_nacimiento: datetime
+	raza: varchar 100
+  descripcion: varchar 500
+  castrado: boolean
+  fecha_registro: date
+  disponible: boolean
+  id_albergue: int <<FK>>
+}
+
+Usuario }--|| Rol
+Albergue ||--|| Usuario
+Mascota }--|| Albergue
+
+@enduml
