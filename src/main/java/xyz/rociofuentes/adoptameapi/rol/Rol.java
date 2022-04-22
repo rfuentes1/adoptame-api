@@ -1,4 +1,4 @@
-package xyz.rociofuentes.adoptameapi.adoptame;
+package xyz.rociofuentes.adoptameapi.rol;
 
 import lombok.Getter;
 import lombok.Setter;

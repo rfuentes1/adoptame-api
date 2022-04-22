@@ -1,9 +1,10 @@
-package xyz.rociofuentes.adoptameapi.adoptame;
+package xyz.rociofuentes.adoptameapi.mascota;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
+import xyz.rociofuentes.adoptameapi.albergue.Albergue;
 
 import javax.persistence.*;
 import java.time.LocalDate;
