@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlbergueServiceImpl implements AlbergueService {
@@ -17,5 +18,10 @@ public class AlbergueServiceImpl implements AlbergueService {
     @Override
     public List<Albergue> listarAlbergues(){
         return albergueRepository.findAll();
+    }
+
+    @Override
+    public Optional<Albergue> traerAlberguePorId(Long id){
+        return albergueRepository.findById(id);
     }
 }
