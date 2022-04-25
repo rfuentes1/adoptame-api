@@ -22,7 +22,14 @@ public class MascotaServiceImpl implements MascotaService {
     }
 
     @Override
-    public Optional<Mascota> traerPorId(Long id){
+    public Optional<Mascota> traerPorId(Long id) {
         return mascotaRepository.findById(id);
+    }
+
+    @Override
+    public Mascota agregarMascota(Mascota mascota){
+        Mascota mascotaDb = mascotaRepository.save(mascota);
+        return mascotaRepository.findById(mascotaDb.getIdMascota())
+                .orElseThrow(() -> new IllegalStateException("Mascota no encontrada"));
     }
 }
