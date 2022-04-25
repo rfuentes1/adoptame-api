@@ -37,4 +37,15 @@ public class AlbergueController {
         );
     }
 
+    @GetMapping(path = "correo/{correo}")
+    public Albergue traerAlberguePorCorreo(@PathVariable("correo")String correo){
+        Optional<Albergue> resultado = albergueService.traerAlberguePorCorreo(correo);
+        if (resultado.isPresent()){
+            return resultado.get();
+        }
+        throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Alberge no encontrado con ese correo."
+        );
+    }
+
 }

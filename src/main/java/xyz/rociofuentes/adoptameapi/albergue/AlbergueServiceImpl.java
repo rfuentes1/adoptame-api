@@ -24,4 +24,9 @@ public class AlbergueServiceImpl implements AlbergueService {
     public Optional<Albergue> traerAlberguePorId(Long id){
         return albergueRepository.findById(id);
     }
+
+    @Override
+    public Optional<Albergue> traerAlberguePorCorreo(String correo){
+        return albergueRepository.findByUsuario_Correo(correo);
+    }
 }
