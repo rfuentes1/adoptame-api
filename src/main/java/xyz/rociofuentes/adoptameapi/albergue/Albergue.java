@@ -22,8 +22,9 @@ public final class Albergue {
     private String contacto;
     private String telefono;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "correo")
+    @ToString.Exclude
     private Usuario usuario;
 
     public Albergue(){}

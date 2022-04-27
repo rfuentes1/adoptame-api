@@ -24,11 +24,11 @@ public class AlbergueController {
     }
 
     @GetMapping
-    public List<Albergue> listarAlbergues() {return albergueService.listarAlbergues();}
+    public List<AlbergueDto> listarAlbergues() {return albergueService.listarAlbergues();}
 
     @GetMapping(path = "{id}")
-    public Albergue traerAlberguePorId(@PathVariable("id") Long id){
-        Optional<Albergue> resultado = albergueService.traerAlberguePorId(id);
+    public AlbergueDto traerAlberguePorId(@PathVariable("id") Long id){
+        Optional<AlbergueDto> resultado = albergueService.traerAlberguePorId(id);
         if (resultado.isPresent()){
             return resultado.get();
         }
@@ -38,8 +38,8 @@ public class AlbergueController {
     }
 
     @GetMapping(path = "correo/{correo}")
-    public Albergue traerAlberguePorCorreo(@PathVariable("correo")String correo){
-        Optional<Albergue> resultado = albergueService.traerAlberguePorCorreo(correo);
+    public AlbergueDto traerAlberguePorCorreo(@PathVariable("correo")String correo){
+        Optional<AlbergueDto> resultado = albergueService.traerAlberguePorCorreo(correo);
         if (resultado.isPresent()){
             return resultado.get();
         }

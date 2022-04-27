@@ -3,7 +3,7 @@ package xyz.rociofuentes.adoptameapi.mascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.rociofuentes.adoptameapi.albergue.Albergue;
-import xyz.rociofuentes.adoptameapi.albergue.AlbergueService;
+import xyz.rociofuentes.adoptameapi.albergue.AlbergueRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -13,12 +13,12 @@ import java.util.Optional;
 public class MascotaServiceImpl implements MascotaService {
 
     private final MascotaRepository mascotaRepository;
-    private final AlbergueService albergueService;
+    private final AlbergueRepository albergueRepository;
 
     @Autowired
-    public MascotaServiceImpl(MascotaRepository mascotaRepository, AlbergueService albergueService) {
+    public MascotaServiceImpl(MascotaRepository mascotaRepository, AlbergueRepository albergueRepository) {
         this.mascotaRepository = mascotaRepository;
-        this.albergueService = albergueService;
+        this.albergueRepository = albergueRepository;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class MascotaServiceImpl implements MascotaService {
     @Override
     public Mascota agregarMascota(Mascota mascota){
         long idAlbergue = mascota.getAlbergue().getIdAlbergue();
-        Optional<Albergue> albergue = albergueService.traerAlberguePorId(idAlbergue);
+        Optional<Albergue> albergue = albergueRepository.findById(idAlbergue);
         if (albergue.isPresent()){
             mascota.setAlbergue(albergue.get());
             return mascotaRepository.save(mascota);

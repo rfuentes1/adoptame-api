@@ -1,0 +1,15 @@
+package xyz.rociofuentes.adoptameapi.albergue;
+
+import lombok.Builder;
+import lombok.Value;
+
+@Builder
+@Value //genera getters y setters y aoarte los marca como privados automáticamente
+public class AlbergueDto {
+    Long id;
+    String nombre;
+    String direccion;
+    String contacto;
+    String telefono;
+    String correo;
+}

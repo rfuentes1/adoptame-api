@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AlbergueServiceImpl implements AlbergueService {
@@ -16,17 +17,32 @@ public class AlbergueServiceImpl implements AlbergueService {
     }
 
     @Override
-    public List<Albergue> listarAlbergues(){
-        return albergueRepository.findAll();
+    public List<AlbergueDto> listarAlbergues(){
+        return albergueRepository.findAll().stream()
+                .map(a -> albergueADto(a))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Albergue> traerAlberguePorId(Long id){
-        return albergueRepository.findById(id);
+    public Optional<AlbergueDto> traerAlberguePorId(Long id){
+        return albergueRepository.findById(id)
+                .map(a -> albergueADto(a));
     }
 
     @Override
-    public Optional<Albergue> traerAlberguePorCorreo(String correo){
-        return albergueRepository.findByUsuario_Correo(correo);
+    public Optional<AlbergueDto> traerAlberguePorCorreo(String correo){
+        return albergueRepository.findByUsuario_Correo(correo)
+                .map(a -> albergueADto(a));
+    }
+
+    private AlbergueDto albergueADto(Albergue a) {
+        return AlbergueDto.builder()
+                .id(a.getIdAlbergue())
+                .nombre(a.getNombre())
+                .direccion(a.getDireccion())
+                .contacto(a.getContacto())
+                .telefono(a.getTelefono())
+                .correo(a.getUsuario().getCorreo())
+                .build();
     }
 }

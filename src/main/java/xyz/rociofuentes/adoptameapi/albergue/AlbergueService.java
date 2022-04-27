@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AlbergueService {
-    List<Albergue> listarAlbergues();
-    Optional<Albergue> traerAlberguePorId(Long id);
-    Optional<Albergue> traerAlberguePorCorreo(String correo);
+    List<AlbergueDto> listarAlbergues();
+    Optional<AlbergueDto> traerAlberguePorId(Long id);
+    Optional<AlbergueDto> traerAlberguePorCorreo(String correo);
 }
