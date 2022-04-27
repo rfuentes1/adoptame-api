@@ -15,7 +15,7 @@ import java.util.Objects;
 @Getter @Setter
 @ToString
 @Entity
-public class Rol {
+public final class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRol;

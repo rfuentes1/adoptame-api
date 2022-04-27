@@ -13,7 +13,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-public class Albergue {
+public final class Albergue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAlbergue;

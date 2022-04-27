@@ -14,7 +14,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-public class Usuario {
+public final class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String correo;

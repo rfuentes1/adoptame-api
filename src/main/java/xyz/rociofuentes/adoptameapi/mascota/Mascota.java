@@ -14,7 +14,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-public class Mascota {
+public final class Mascota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMascota;
