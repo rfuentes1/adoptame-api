@@ -47,4 +47,17 @@ public class MascotaController {
             );
         }
     }
+
+    @DeleteMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminarMascota(@PathVariable("id") Long id){
+        try {
+            mascotaService.marcarNoDisponible(id);
+        }catch(EntityNotFoundException e){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "El id de mascota no existe"
+            );
+        }
+    }
 }
+
