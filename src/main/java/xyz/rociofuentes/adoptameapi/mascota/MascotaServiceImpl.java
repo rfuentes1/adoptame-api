@@ -53,9 +53,8 @@ public class MascotaServiceImpl implements MascotaService {
 
     @Override
     public void marcarNoDisponible(Long id) {
-        MascotaDto mascotaDto = traerPorId(id)
+        Mascota mascota = mascotaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Id de mascota no enconrado"));
-        Mascota mascota = MascotaUtil.dtoAMascota(mascotaDto);
         mascota.setDisponible(false);
         mascotaRepository.save(mascota);
     }
