@@ -36,7 +36,12 @@ public class MascotaServiceImpl implements MascotaService {
 
 
     @Override
-    public MascotaDto agregarMascota(MascotaDto mascotaDto){
+    public MascotaDto agregarOEditarMascota(MascotaDto mascotaDto){
+        // if the id is present then validate that the entity exists
+        if (mascotaDto.getId() != null) {
+            mascotaDto = traerPorId(mascotaDto.getId())
+                    .orElseThrow(() -> new EntityNotFoundException("Id de mascota no enconrado"));
+        }
         // Convert from Dto to entity
         Mascota mascota = MascotaUtil.dtoAMascota(mascotaDto);
         // get albergueId

@@ -40,7 +40,7 @@ public class MascotaController {
     @ResponseStatus(HttpStatus.CREATED)
     public MascotaDto publicarMascota(@RequestBody MascotaDto mascota){
         try {
-            return mascotaService.agregarMascota(mascota);
+            return mascotaService.agregarOEditarMascota(mascota);
         }catch(EntityNotFoundException e){
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, e.getMessage()
@@ -56,6 +56,19 @@ public class MascotaController {
         }catch(EntityNotFoundException e){
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "El id de mascota no existe"
+            );
+        }
+    }
+
+    @PutMapping(path = "{id}")
+    public MascotaDto actualizarMascota(@PathVariable("id") Long id,  @RequestBody MascotaDto mascotaDto){
+        // I added the id from the path variable to the Mascota Object
+        mascotaDto = mascotaDto.toBuilder().id(id).build();
+        try {
+            return mascotaService.agregarOEditarMascota(mascotaDto);
+        }catch(EntityNotFoundException e){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, e.getMessage()
             );
         }
     }

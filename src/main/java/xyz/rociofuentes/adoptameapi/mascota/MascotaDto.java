@@ -6,7 +6,7 @@ import xyz.rociofuentes.adoptameapi.albergue.AlbergueDto;
 
 import java.time.LocalDate;
 
-@Builder
+@Builder(toBuilder = true)
 @Value
 public class MascotaDto {
     Long id;
