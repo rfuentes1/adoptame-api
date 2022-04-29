@@ -7,4 +7,6 @@ public interface AlbergueService {
     List<AlbergueDto> listarAlbergues();
     Optional<AlbergueDto> traerAlberguePorId(Long id);
     Optional<AlbergueDto> traerAlberguePorCorreo(String correo);
+    AlbergueDto agregarOEditarAlbergue(AlbergueDto albergueDto);
+
 }

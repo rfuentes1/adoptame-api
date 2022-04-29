@@ -3,12 +3,10 @@ package xyz.rociofuentes.adoptameapi.albergue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +44,19 @@ public class AlbergueController {
         throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Alberge no encontrado con ese correo."
         );
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public AlbergueDto agregarAlbergue(@RequestBody AlbergueDto albergueDto){
+        try {
+            return albergueService.agregarOEditarAlbergue(albergueDto);
+        }catch (EntityNotFoundException e){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, e.getMessage()
+            );
+        }
+
     }
 
 }

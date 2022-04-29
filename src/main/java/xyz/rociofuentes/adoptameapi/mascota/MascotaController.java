@@ -38,9 +38,9 @@ public class MascotaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MascotaDto publicarMascota(@RequestBody MascotaDto mascota){
+    public MascotaDto publicarMascota(@RequestBody MascotaDto mascotaDto){
         try {
-            return mascotaService.agregarOEditarMascota(mascota);
+            return mascotaService.agregarOEditarMascota(mascotaDto);
         }catch(EntityNotFoundException e){
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, e.getMessage()
