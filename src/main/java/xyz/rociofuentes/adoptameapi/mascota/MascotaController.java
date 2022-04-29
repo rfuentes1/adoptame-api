@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,13 +21,13 @@ public class MascotaController {
     }
 
     @GetMapping
-    public List<Mascota> listarMascotas(){
+    public List<MascotaDto> listarMascotas(){
         return mascotaService.listarMascotas();
     }
 
     @GetMapping(path = "{id}")
-    public Mascota traerMascotaPorId(@PathVariable("id") Long id){
-        Optional<Mascota> resultado = mascotaService.traerPorId(id);
+    public MascotaDto traerMascotaPorId(@PathVariable("id") Long id){
+        Optional<MascotaDto> resultado = mascotaService.traerPorId(id);
         if(resultado.isPresent()){
             return resultado.get();
         }
@@ -36,8 +37,14 @@ public class MascotaController {
     }
 
     @PostMapping
-    public Mascota agregarMascota(@RequestBody Mascota mascota){
-        return mascotaService.agregarMascota(mascota);
+    @ResponseStatus(HttpStatus.CREATED)
+    public MascotaDto publicarMascota(@RequestBody MascotaDto mascota){
+        try {
+            return mascotaService.agregarMascota(mascota);
+        }catch(EntityNotFoundException e){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, e.getMessage()
+            );
+        }
     }
-
 }

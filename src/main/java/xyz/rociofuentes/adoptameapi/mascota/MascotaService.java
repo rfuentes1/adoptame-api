@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MascotaService {
-    List<Mascota> listarMascotas();
-    Optional<Mascota> traerPorId(Long id);
-    Mascota agregarMascota(Mascota mascota);
+    List<MascotaDto> listarMascotas();
+    Optional<MascotaDto> traerPorId(Long id);
+    MascotaDto agregarMascota(MascotaDto mascota);
 }

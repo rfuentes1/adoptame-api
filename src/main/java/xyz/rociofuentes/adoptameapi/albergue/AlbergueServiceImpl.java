@@ -19,30 +19,19 @@ public class AlbergueServiceImpl implements AlbergueService {
     @Override
     public List<AlbergueDto> listarAlbergues(){
         return albergueRepository.findAll().stream()
-                .map(a -> albergueADto(a))
+                .map(a -> AlbergueUtil.albergueADto(a))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<AlbergueDto> traerAlberguePorId(Long id){
         return albergueRepository.findById(id)
-                .map(a -> albergueADto(a));
+                .map(a -> AlbergueUtil.albergueADto(a));
     }
 
     @Override
     public Optional<AlbergueDto> traerAlberguePorCorreo(String correo){
         return albergueRepository.findByUsuario_Correo(correo)
-                .map(a -> albergueADto(a));
-    }
-
-    private AlbergueDto albergueADto(Albergue a) {
-        return AlbergueDto.builder()
-                .id(a.getIdAlbergue())
-                .nombre(a.getNombre())
-                .direccion(a.getDireccion())
-                .contacto(a.getContacto())
-                .telefono(a.getTelefono())
-                .correo(a.getUsuario().getCorreo())
-                .build();
+                .map(a -> AlbergueUtil.albergueADto(a));
     }
 }
