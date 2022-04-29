@@ -23,6 +23,7 @@ entity "Albergue" {
   direccion: varchar 500
   contacto: varchar 100
   telefono: varchar 13
+  esta_activo: boolean
   correo: varchar <<FK>>
 }
 

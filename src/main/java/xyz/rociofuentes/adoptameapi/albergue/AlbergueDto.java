@@ -11,5 +11,6 @@ public class AlbergueDto {
     String direccion;
     String contacto;
     String telefono;
+    Boolean estaActivo;
     String correo;
 }

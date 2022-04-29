@@ -10,6 +10,7 @@ public class AlbergueUtil {
                 .direccion(a.getDireccion())
                 .contacto(a.getContacto())
                 .telefono(a.getTelefono())
+                .estaActivo(a.getEstaActivo())
                 .correo(a.getUsuario().getCorreo())
                 .build();
     }
@@ -23,6 +24,7 @@ public class AlbergueUtil {
                 dto.getDireccion(),
                 dto.getContacto(),
                 dto.getTelefono(),
+                dto.getEstaActivo(),
                 usuario
                 );
     }

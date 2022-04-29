@@ -21,6 +21,7 @@ public final class Albergue {
     private String direccion;
     private String contacto;
     private String telefono;
+    private Boolean estaActivo;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "correo")
@@ -28,12 +29,13 @@ public final class Albergue {
     private Usuario usuario;
 
     public Albergue(){}
-    public Albergue(Long idAlbergue, String nombre, String direccion, String contacto, String telefono, Usuario usuario){
+    public Albergue(Long idAlbergue, String nombre, String direccion, String contacto, String telefono, Boolean estaActivo, Usuario usuario){
         this.idAlbergue = idAlbergue;
         this.nombre = nombre;
         this.direccion = direccion;
         this.contacto = contacto;
         this.telefono = telefono;
+        this.estaActivo = estaActivo;
         this.usuario = usuario;
     }
 

@@ -22,6 +22,7 @@ CREATE TABLE albergue(
     direccion VARCHAR(500) NOT NULL,
     contacto VARCHAR(100) NOT NULL,
     telefono VARCHAR(13) NOT NULL,
+    esta_activo BOOLEAN DEFAULT 1,
     correo VARCHAR(100) UNIQUE NOT NULL,
     FOREIGN KEY (correo) REFERENCES usuario(correo)
 );
