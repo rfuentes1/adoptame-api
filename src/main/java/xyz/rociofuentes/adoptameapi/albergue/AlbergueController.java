@@ -1,6 +1,5 @@
 package xyz.rociofuentes.adoptameapi.albergue;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +55,18 @@ public class AlbergueController {
                     HttpStatus.BAD_REQUEST, e.getMessage()
             );
         }
-
     }
 
+    @PutMapping(path = "{id}")
+    public AlbergueDto acualizarAlbergue(@PathVariable("id") Long id, @RequestBody AlbergueDto albergueDto){
+        // Add the Id passed through the endpoint to the Albergue object
+        albergueDto = albergueDto.toBuilder().id(id).build();
+        try {
+            return albergueService.agregarOEditarAlbergue(albergueDto);
+        }catch (EntityNotFoundException e){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, e.getMessage()
+            );
+        }
+    }
 }

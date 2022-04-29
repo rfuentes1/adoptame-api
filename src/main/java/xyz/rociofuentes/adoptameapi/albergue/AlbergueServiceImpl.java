@@ -42,6 +42,11 @@ public class AlbergueServiceImpl implements AlbergueService {
 
     @Override
     public AlbergueDto agregarOEditarAlbergue(AlbergueDto albergueDto) {
+        // if the id is present then validate that the entry exists
+        if(albergueDto.getId() != null){
+            if(!albergueRepository.existsById(albergueDto.getId()))
+                    throw new EntityNotFoundException("El id del albergue no fue encontrado");
+        }
         // Convert from albergueDto to entity
         Albergue albergue = AlbergueUtil.dtoAAlbergue(albergueDto);
         //get correoUsuario
