@@ -69,4 +69,16 @@ public class AlbergueController {
             );
         }
     }
+
+    @DeleteMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminarAlbergue(@PathVariable("id") Long id){
+        try{
+            albergueService.marcarAlbergueNoDisponible(id);
+        }catch (EntityNotFoundException e){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "El id del albergue no existe"
+            );
+        }
+    }
 }

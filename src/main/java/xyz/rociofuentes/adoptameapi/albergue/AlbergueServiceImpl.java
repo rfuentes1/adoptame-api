@@ -60,4 +60,12 @@ public class AlbergueServiceImpl implements AlbergueService {
         // return the albergue and the full user entity
         return AlbergueUtil.albergueADto(albergueRepository.save(albergue));
     }
+
+    @Override
+    public void marcarAlbergueNoDisponible(Long id) {
+        Albergue albergue = albergueRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException("Id de albergue no encontrado"));
+        albergue.setEstaActivo(false);
+        albergueRepository.save(albergue);
+    }
 }

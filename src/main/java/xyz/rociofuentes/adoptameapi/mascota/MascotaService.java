@@ -8,4 +8,5 @@ public interface MascotaService {
     Optional<MascotaDto> traerPorId(Long id);
     MascotaDto agregarOEditarMascota(MascotaDto mascota);
     void marcarNoDisponible(Long id);
+
 }
