@@ -21,7 +21,6 @@ public class MascotaServiceImpl implements MascotaService {
         this.mascotaRepository = mascotaRepository;
     }
 
-
     @Override
     public List<MascotaDto> listarMascotas(){
         return mascotaRepository.findAll().stream()
@@ -34,13 +33,12 @@ public class MascotaServiceImpl implements MascotaService {
                 .map(mascota -> MascotaUtil.mascotaADto(mascota));
     }
 
-
     @Override
     public MascotaDto agregarOEditarMascota(MascotaDto mascotaDto){
         // if the id is present then validate that the entity exists
         if (mascotaDto.getId() != null) {
-            mascotaDto = traerPorId(mascotaDto.getId())
-                    .orElseThrow(() -> new EntityNotFoundException("Id de mascota no enconrado"));
+            if(!mascotaRepository.existsById(mascotaDto.getId()))
+                    throw new EntityNotFoundException("Id de mascota no enconrado");
         }
         // Convert from Dto to entity
         Mascota mascota = MascotaUtil.dtoAMascota(mascotaDto);
@@ -63,5 +61,4 @@ public class MascotaServiceImpl implements MascotaService {
         mascota.setDisponible(false);
         mascotaRepository.save(mascota);
     }
-
 }
