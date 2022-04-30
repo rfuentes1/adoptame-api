@@ -6,7 +6,10 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 import xyz.rociofuentes.adoptameapi.rol.Rol;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -16,7 +19,6 @@ import java.util.Objects;
 @Entity
 public final class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String correo;
     private String passwordHash;
     private boolean activo;
