@@ -22,13 +22,13 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> listarUsuarios(){
+    public List<UsuarioDto> listarUsuarios(){
         return usuarioService.listarUsuarios();
     }
 
     @GetMapping(path = "{correo}")
-    public Usuario traerUsuarioPorId(@PathVariable("correo") String correo){
-        Optional<Usuario> resultado = usuarioService.traerUsuarioPorId(correo);
+    public UsuarioDto traerUsuarioPorId(@PathVariable("correo") String correo){
+        Optional<UsuarioDto> resultado = usuarioService.traerUsuarioPorId(correo);
         if (resultado.isPresent()){
             return resultado.get();
         }
