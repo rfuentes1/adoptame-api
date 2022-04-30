@@ -61,4 +61,10 @@ public class MascotaServiceImpl implements MascotaService {
         mascota.setDisponible(false);
         mascotaRepository.save(mascota);
     }
+
+    @Override
+    public List<MascotaDto> listarMascotasDisponibles(){
+        return mascotaRepository.findByDisponible(true).stream()
+                .map(m -> MascotaUtil.mascotaADto(m)).collect(Collectors.toList());
+    }
 }

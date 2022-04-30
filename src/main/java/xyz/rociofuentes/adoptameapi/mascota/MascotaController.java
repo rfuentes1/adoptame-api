@@ -72,4 +72,9 @@ public class MascotaController {
             );
         }
     }
+
+    @GetMapping(path = "disponibles")
+    public List<MascotaDto> listarMascotasDiponibles(){
+        return mascotaService.listarMascotasDisponibles();
+    }
 }
